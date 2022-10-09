@@ -15,14 +15,18 @@ def movenemo(x, y):
                 "Enter 'Show Path' to see the direction or 'Show Route' to see the path co-ordinates or 'Show All' to see both\n"))
             v = sum(1 for f in way)
             if 'Show Path' in o:
+                print('Path Directions:')
                 print(way)
             elif 'Show Route' in o:
+                print('Path Co-ordinates:')
                 for u in range(v):
-                    print(f'{u + 1})', path[0][u], path[1][u])
+                    print(f'{u + 1})', int (path[0][u] + 1 ), int(path[1][u] + 1))
             elif 'Show All' in o:
+                print('Path Directions:')
                 print(way)
+                print('Path Co-ordinates:')
                 for u in range (v):
-                    print(f'{u+1})',path[0][u], path[1][u])
+                    print(f'{u+1})', int (path[0][u] + 1 ), int(path[1][u] + 1))
             else:
                 print("Oopsie! You made a typo")
             sys.exit()
@@ -32,7 +36,7 @@ def movenemo(x, y):
             w = y
             q = q - 1
             if q > 0:
-                position = str(Z[q][w])
+                position = str(Z[w][q])
                 if (position == ' '):
                     d2 = distance(q, w)
                     if d2 < d1:
@@ -51,7 +55,7 @@ def movenemo(x, y):
             w = y
             q = q + 1
             if q < n:
-                position = str(Z[q][w])
+                position = str(Z[w][q])
                 if (position == ' '):
                     d2 = distance(q, w)
                     if d2 < d1:
@@ -70,7 +74,7 @@ def movenemo(x, y):
             w = y
             w = w - 1
             if y > 0:
-                position = str(Z[q][w])
+                position = str(Z[w][q])
                 if (position == ' '):
                     d2 = distance(q, w)
                     if d2 < d1:
@@ -89,7 +93,7 @@ def movenemo(x, y):
             w = y
             w = w + 1
             if y < n:
-                position = str(Z[q][w])
+                position = str(Z[w][q])
                 if (position == ' '):
                     d2 = distance(q, w)
                     if d2 < d1:
@@ -108,7 +112,7 @@ def movenemo(x, y):
 if __name__ == '__main__':
     n = int(input("Enter maze width: "))
     Z = [["" for x in range(n)] for y in range(n)]
-    maze = open(r"C:\Users\Mahesh\PycharmProjects\Path Finder AI\Step Maze - Copy.txt")
+    maze = open(r"C:\Users\Mahesh\PycharmProjects\Path Finder AI\Long Maze.txt")
     directions = ['Left', 'Right', 'Up', 'Down']
     way = ['Start']
 
@@ -120,7 +124,8 @@ if __name__ == '__main__':
             if T != "\n" or "":
                 Z[i][j] = T
                 j += 1
-
+    print(Z)
+    print(Z[0][7])
     sx = int(input("Enter the X co-ordinate of starting position: ")) - 1
     sy = int(input("Enter the Y co-ordinate of starting position: ")) - 1
     ox = int(input("Enter the X co-ordinate of finishing position: ")) - 1
