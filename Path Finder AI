@@ -1,0 +1,138 @@
+import math
+import sys
+
+
+def distance(g, h):
+    dist = math.sqrt(((ox - g) * (ox - g)) + ((oy - h) * (oy - h)))
+    return dist
+
+
+def movenemo(x, y):
+    d1 = distance(x, y)
+    for direction in range(1, 5):
+        if (x == ox) and (y == oy):
+            o = str(input(
+                "Enter 'Show Path' to see the direction or 'Show Route' to see the path co-ordinates or 'Show All' to see both\n"))
+            v = sum(1 for f in way)
+            if 'Show Path' in o:
+                print(way)
+            elif 'Show Route' in o:
+                for u in range(v):
+                    print(f'{u + 1})', path[0][u], path[1][u])
+            elif 'Show All' in o:
+                print(way)
+                for u in range (v):
+                    print(f'{u+1})',path[0][u], path[1][u])
+            else:
+                print("Oopsie! You made a typo")
+            sys.exit()
+            break
+        while direction == 1:
+            q = x
+            w = y
+            q = q - 1
+            if q > 0:
+                position = str(Z[q][w])
+                if (position == ' '):
+                    d2 = distance(q, w)
+                    if d2 < d1:
+                        way.append('Left')
+                        x = q
+                        path[0].append(x)
+                        path[1].append(y)
+                        if (x == ox) and (y == oy):
+                            break
+                        movenemo(x, y)
+                    break
+                break
+            break
+        while direction == 2:
+            q = x
+            w = y
+            q = q + 1
+            if q < n:
+                position = str(Z[q][w])
+                if (position == ' '):
+                    d2 = distance(q, w)
+                    if d2 < d1:
+                        way.append('Right')
+                        x = q
+                        path[0].append(x)
+                        path[1].append(y)
+                        if (x == ox) and (y == oy):
+                            break
+                        movenemo(x, y)
+                    break
+                break
+            break
+        while direction == 3:
+            q = x
+            w = y
+            w = w - 1
+            if y > 0:
+                position = str(Z[q][w])
+                if (position == ' '):
+                    d2 = distance(q, w)
+                    if d2 < d1:
+                        way.append('Up')
+                        y = w
+                        path[0].append(x)
+                        path[1].append(y)
+                        if (x == ox) and (y == oy):
+                            break
+                        movenemo(x, y)
+                    break
+                break
+            break
+        while direction == 4:
+            q = x
+            w = y
+            w = w + 1
+            if y < n:
+                position = str(Z[q][w])
+                if (position == ' '):
+                    d2 = distance(q, w)
+                    if d2 < d1:
+                        way.append('Down')
+                        y = w
+                        path[0].append(x)
+                        path[1].append(y)
+                        if (x == ox) and (y == oy):
+                            break
+                        movenemo(x, y)
+                    break
+                break
+            break
+
+
+if __name__ == '__main__':
+    n = int(input("Enter maze width: "))
+    Z = [["" for x in range(n)] for y in range(n)]
+    maze = open(r"C:\Users\Mahesh\PycharmProjects\Path Finder AI\Step Maze - Copy.txt")
+    directions = ['Left', 'Right', 'Up', 'Down']
+    way = ['Start']
+
+    for i in range(n):
+        # T=[]
+        j = 0
+        while j < n:
+            T = str(maze.read(1))
+            if T != "\n" or "":
+                Z[i][j] = T
+                j += 1
+
+    sx = int(input("Enter the X co-ordinate of starting position: ")) - 1
+    sy = int(input("Enter the Y co-ordinate of starting position: ")) - 1
+    ox = int(input("Enter the X co-ordinate of finishing position: ")) - 1
+    oy = int(input("Enter the Y co-ordinate of finishing position: ")) - 1
+
+    x = sx
+    y = sy
+    nemo = [x, y]
+    path = [[], []]
+    path[0].append(sx)
+    path[1].append(sy)
+    start = input("Type 'Start' to begin Nemo\'s search\n")
+    if start == 'Start':
+        while (sx != ox) and (sy != oy):
+            movenemo(x, y)
