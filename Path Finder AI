@@ -1,6 +1,6 @@
 import math
 import sys
-
+##
 
 def distance(g, h):
     dist = math.sqrt(((ox - g) * (ox - g)) + ((oy - h) * (oy - h)))
