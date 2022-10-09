@@ -124,8 +124,7 @@ if __name__ == '__main__':
             if T != "\n" or "":
                 Z[i][j] = T
                 j += 1
-    print(Z)
-    print(Z[0][7])
+                
     sx = int(input("Enter the X co-ordinate of starting position: ")) - 1
     sy = int(input("Enter the Y co-ordinate of starting position: ")) - 1
     ox = int(input("Enter the X co-ordinate of finishing position: ")) - 1
